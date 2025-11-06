@@ -1,0 +1,157 @@
+---
+title: Organization
+description: Strategies and tools for structuring your documentation in Paperguide
+---
+
+## Structuring Your Docs
+
+You organize documentation in Paperguide using spaces, folders, and tags to maintain clarity as projects grow. This approach prevents clutter and enables quick retrieval. Implement a logical hierarchy from the outset to support team scalability.
+
+<Columns cols={3}>
+  <Card title="Spaces" icon="globe" href="#">
+    Top-level containers for project-specific docs.
+  </Card>
+  <Card title="Folders" icon="folder" href="#">
+    Nested organization within spaces.
+  </Card>
+  <Card title="Tags" icon="tag" href="#">
+    Cross-reference content across sections.
+  </Card>
+</Columns>
+
+## Building Hierarchies
+
+Create a folder structure mirroring your project's phases or components.
+
+<Steps>
+  <Step title="Define Categories" icon="list">
+
+    Identify main areas like `Setup`, `API`, `Troubleshooting`. Create folders accordingly.
+
+    ````javascript
+    // API example for folder creation
+    const folder = await paperguide.createFolder({
+      name: "API",
+      parent: "project-space",
+      description: "API-related guides"
+    });
+    ````
+
+  </Step>
+  <Step title="Assign Tags" icon="hashtag">
+
+    Add tags such as `v1.0`, `internal` to docs for filtering.
+
+    <CodeGroup tabs="Bulk Tag,Single">
+      ````javascript
+      // Bulk tagging
+      await paperguide.tagDocs(["doc1", "doc2"], ["api", "draft"]);
+      ````
+      ````javascript
+      // Single doc
+      doc.addTag("published");
+      ````
+    </CodeGroup>
+
+  </Step>
+  <Step title="Link Pages" icon="link">
+
+    Use internal links to connect related content seamlessly.
+
+    ````markdown
+    [See Authentication Guide](../auth/setup.md)
+    ````
+
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+
+Limit folder depth to three levels to avoid navigation complexity. Flatten structures when possible for better usability.
+
+</Callout>
+
+## Search and Discovery
+
+Leverage Paperguide's search to find content efficiently. You query by keywords, tags, or full text across your space.
+
+<Tabs>
+  <Tab title="Basic Search" icon="search">
+
+    Enter terms in the global search bar. Results include previews for quick scanning.
+
+    ````javascript
+    // Programmatic search
+    const results = await paperguide.search("authentication");
+    results.forEach(doc => console.log(doc.title));
+    ````
+
+  </Tab>
+  <Tab title="Advanced Filters" icon="filter">
+
+    Filter by date, author, or tag. Combine for precise results.
+
+    <Expandable title="Filter Examples">
+
+      Search `tag:api AND author:john` for targeted docs.
+
+    </Expandable>
+
+  </Tab>
+</Tabs>
+
+## Best Practices
+
+Adopt naming conventions like `kebab-case` for doc titles. Regularly audit and archive obsolete content to keep spaces lean.
+
+| Organization Element | Purpose | Example |
+|----------------------|---------|---------|
+| Spaces | Project isolation | `Web App Docs` |
+| Folders | Topical grouping | `User Guide/Onboarding` |
+| Tags | Cross-cutting concerns | `draft`, `published` |
+| Links | Navigation aids | `[Related Topic](../folder/topic)` |
+
+<Callout kind="tip">
+
+Use the outline view to visualize structure before finalizing. This prevents rework.
+
+</Callout>
+
+## Automation Tools
+
+Integrate scripts for bulk organization tasks.
+
+<CodeGroup tabs="Node.js,Python">
+  ````javascript
+  // Node.js bulk folder creator
+  async function createStructure() {
+    const folders = ["setup", "api", "faq"];
+    for (const folder of folders) {
+      await paperguide.createFolder({name: folder});
+    }
+  }
+  ````
+  ````python
+  # Python equivalent
+  import paperguide
+  
+  folders = ["setup", "api", "faq"]
+  for folder in folders:
+      paperguide.create_folder(name=folder)
+  ````
+</CodeGroup>
+
+<ExpandableGroup>
+  <Expandable title="Handling Large Spaces">
+
+    For 100+ docs, enable indexing for faster searches. Monitor storage usage monthly.
+
+  </Expandable>
+  <Expandable title="Migration Strategies">
+
+    When moving from other tools, use CSV exports to map old structures to Paperguide folders.
+
+  </Expandable>
+</ExpandableGroup>
+
+You maintain organized docs by combining manual and automated methods. This ensures accessibility as your project evolves. Review quarterly to adapt to changes.

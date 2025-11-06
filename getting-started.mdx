@@ -1,0 +1,149 @@
+---
+title: Getting Started
+description: Step-by-step guide to set up and begin using Paperguide Documentation
+---
+
+## Setup Process
+
+You begin your Paperguide journey by creating an account and initializing a documentation space. This platform streamlines project documentation through a user-friendly editor and collaboration tools. Follow the outlined steps to get operational quickly.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+
+    Visit the Paperguide website and click `Sign Up`. Provide your email and create a password. Verify your account via the confirmation link sent to your inbox.
+
+    ````javascript
+    // If using API signup (optional)
+    const user = await paperguide.auth.signUp({
+      email: "user@example.com",
+      password: "securepass123"
+    });
+    console.log(`Welcome, ${user.email}`);
+    ````
+
+  </Step>
+  <Step title="Create Workspace" icon="folder-plus">
+
+    After login, select `New Workspace`. Name it based on your project, such as `API Docs v1`. Add a brief description for context.
+
+  </Step>
+  <Step title="Import Existing Docs" icon="upload">
+
+    Use the import tool to bring in Markdown files or from Git repos. Paperguide parses and formats them automatically.
+
+    <Tabs>
+      <Tab title="Markdown Import" icon="file-text">
+
+        Upload `.md` files directly.
+
+        ````bash
+        # Example command-line import if CLI available
+        paperguide import --file docs.md --space api-docs
+        ````
+
+      </Tab>
+      <Tab title="Git Sync" icon="git-branch">
+
+        Connect your GitHub repo for automatic pulls.
+
+      </Tab>
+    </Tabs>
+
+  </Step>
+</Steps>
+
+<Columns cols={2}>
+  <Card title="Editor Basics" icon="edit-3" href="#">
+    Learn markdown shortcuts and preview rendering.
+  </Card>
+  <Card title="Navigation Tips" icon="compass" href="#">
+    Use search and breadcrumbs for efficient browsing.
+  </Card>
+</Columns>
+
+## Initial Configuration
+
+Customize your space settings to fit team needs. You adjust themes, enable notifications, and set default permissions here.
+
+<CodeGroup tabs="JSON,CLI">
+  ````json
+  {
+    "theme": "light",
+    "notifications": true,
+    "defaultRole": "editor"
+  }
+  ````
+  ````bash
+  paperguide config set theme light
+  paperguide config set notifications on
+  ````
+</CodeGroup>
+
+<Callout kind="success">
+
+Completion of setup takes under 5 minutes. Test by creating a sample doc to familiarize yourself with the interface.
+
+</Callout>
+
+## Common Pitfalls
+
+Avoid overloading the initial space with too many docs. Start with core pages and expand gradually. Ensure backups if integrating with external storage.
+
+<Expandable title="Troubleshooting Login" default-open="false">
+
+If issues arise, check your email for verification or reset password via the forgot link. Contact support for persistent problems.
+
+</Expandable>
+
+<Tabs>
+  <Tab title="Mobile Access" icon="phone">
+
+    Use the responsive web app for on-the-go edits. Features like search work seamlessly on smaller screens.
+
+  </Tab>
+  <Tab title="Desktop Optimization" icon="monitor">
+
+    Install the desktop app for offline drafting and faster syncs.
+
+    ````javascript
+    // Sync example
+    await paperguide.sync();
+    console.log("Docs updated");
+    ````
+
+  </Tab>
+</Tabs>
+
+You now have a functional Paperguide setup. Proceed to organize content next for optimal structure. Regular maintenance keeps your documentation effective.
+
+## Integration Options
+
+Connect Paperguide to tools like Slack for updates or Jira for task linking. These enhance workflow without leaving the platform.
+
+<ExpandableGroup>
+  <Expandable title="Slack Integration Setup">
+
+    Generate a webhook URL in settings and paste into Slack's incoming webhooks.
+
+    ````json
+    {
+      "text": "New doc published: {title}",
+      "channel": "#docs"
+    }
+    ````
+
+  </Expandable>
+  <Expandable title="Jira Linking">
+
+    Embed Jira tickets directly in docs using shortcodes.
+
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="tip">
+
+Prioritize integrations that match your team's tools to maximize adoption.
+
+</Callout>
+
+This guide equips you to launch Paperguide effectively. Explore further pages for advanced usage.

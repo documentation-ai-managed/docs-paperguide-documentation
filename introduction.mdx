@@ -1,0 +1,130 @@
+---
+title: Introduction
+description: Overview of Paperguide Documentation and its core capabilities for organizing project docs
+---
+
+## Overview
+
+Paperguide Documentation provides a centralized space to organize and manage your project documentation. You create, edit, and collaborate on docs using an intuitive interface that supports rich formatting and version control. This default space helps teams maintain up-to-date guides without complexity.
+
+<Columns cols={3}>
+  <Card title="Easy Organization" icon="folder" href="#">
+    Structure your docs with folders and tags for quick access.
+  </Card>
+  <Card title="Real-time Collaboration" icon="users" href="#">
+    Invite team members to edit simultaneously with change tracking.
+  </Card>
+  <Card title="Version History" icon="clock" href="#">
+    Track changes over time and revert to previous versions easily.
+  </Card>
+</Columns>
+
+<Callout kind="info">
+
+You start by creating a new space or using this default one. Ensure all team members have access permissions set correctly from the beginning.
+
+</Callout>
+
+## Quick Start
+
+Follow these steps to set up your first document in Paperguide.
+
+<Steps>
+  <Step title="Create a Space" icon="rocket">
+
+    Navigate to the dashboard and select `Create New Space`. Enter a name like `Project Alpha Docs` and choose a description.
+
+    ````javascript
+    // Example space creation via API (if integrated)
+    const space = await paperguide.createSpace({
+      name: "Project Alpha Docs",
+      description: "Documentation for Project Alpha"
+    });
+    console.log(`Space ID: ${space.id}`);
+    ````
+
+  </Step>
+  <Step title="Add Documents" icon="file-text">
+
+    Inside the space, click `New Document`. Use the editor to add headings, lists, and code blocks.
+
+    ````markdown
+    # Project Overview
+    
+    This is your starting point.
+    
+    ## Key Features
+    - Feature one
+    - Feature two
+    ````
+
+  </Step>
+  <Step title="Invite Collaborators" icon="user-plus">
+
+    Go to `Settings > Access` and add emails. Assign roles like editor or viewer.
+
+  </Step>
+</Steps>
+
+## Core Features
+
+Explore how Paperguide supports your workflow.
+
+<Tabs>
+  <Tab title="Solo Editing" icon="user">
+
+    You write docs independently with auto-save and preview modes. The interface includes syntax highlighting for code snippets.
+
+    <CodeGroup tabs="Markdown,HTML">
+      ````markdown
+      ## Heading
+      
+      This is **bold** text.
+      ````
+      ````html
+      <h2>Heading</h2>
+      
+      <p>This is <strong>bold</strong> text.</p>
+      ````
+    </CodeGroup>
+
+  </Tab>
+  <Tab title="Team Workflow" icon="users">
+
+    Collaborate with comments and @mentions. Resolve suggestions directly in the editor.
+
+    <Expandable title="Advanced Permissions" default-open="false">
+
+      Set granular controls for sections, like read-only for drafts.
+
+    </Expandable>
+
+  </Tab>
+</Tabs>
+
+<ExpandableGroup>
+  <Expandable title="What is a Documentation Space?">
+
+    A space acts as a container for related documents, similar to a project folder but with built-in search and linking.
+
+  </Expandable>
+  <Expandable title="How to Export Docs?">
+
+    Use the export feature to generate PDF or Markdown files for sharing outside Paperguide.
+
+  </Expandable>
+</ExpandableGroup>
+
+You integrate Paperguide with tools like GitHub for version syncing. This ensures your docs stay current with code changes. For larger teams, consider custom workflows via webhooks.
+
+## Best Practices
+
+Organize docs hierarchically from the start. Use consistent naming for easy navigation. Regularly review and archive outdated content to keep the space clean.
+
+<Callout kind="tip">
+
+Tag documents with keywords like `api`, `setup` for better search results. This helps you find content quickly during reviews.
+
+</Callout>
+
+In summary, Paperguide simplifies documentation management, allowing you to focus on content rather than tools. Start small and scale as your project grows.

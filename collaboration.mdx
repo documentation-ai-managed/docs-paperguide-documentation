@@ -1,0 +1,157 @@
+---
+title: Collaboration
+description: Tools and workflows for team-based documentation in Paperguide
+---
+
+## Team Workflows
+
+You collaborate in Paperguide through real-time editing, comments, and role-based access. This fosters efficient knowledge sharing without version conflicts. Set up workflows that match your team's communication style for smooth contributions.
+
+<Columns cols={2}>
+  <Card title="Real-time Edits" icon="edit-3" href="#">
+    Multiple users edit simultaneously with live updates.
+  </Card>
+  <Card title="Comment Threads" icon="message-circle" href="#">
+    Discuss changes inline without leaving the doc.
+  </Card>
+</Columns>
+
+## Inviting Members
+
+Add team members to your space with tailored permissions.
+
+<Steps>
+  <Step title="Manage Access" icon="shield">
+
+    Go to `Space Settings > Members`. Click `Invite` and enter emails.
+
+    ````javascript
+    // API invitation
+    await paperguide.inviteMember({
+      email: "team@example.com",
+      role: "editor",
+      spaceId: "project-space"
+    });
+    ````
+
+  </Step>
+  <Step title="Assign Roles" icon="user-check">
+
+    Choose from viewer, editor, or admin. Editors can suggest changes; admins manage settings.
+
+  </Step>
+  <Step title="Review Invites" icon="eye">
+
+    Monitor pending invites and revoke access as needed.
+
+    <Callout kind="info">
+
+    Notify invitees via email for prompt acceptance.
+
+    </Callout>
+
+  </Step>
+</Steps>
+
+## Editing Together
+
+Use the collaborative editor for joint sessions.
+
+<Tabs>
+  <Tab title="Live Sessions" icon="video">
+
+    Share a doc link for instant join. Cursor indicators show who edits what.
+
+    ````markdown
+    ## Shared Section
+    
+    @alice: Add details here.
+    @bob: Updated example code.
+    ````
+
+  </Tab>
+  <Tab title="Async Reviews" icon="clock">
+
+    Leave comments for offline feedback. Resolve them to track progress.
+
+    <CodeGroup tabs="Add Comment,Resolve">
+      ````javascript
+      // Add comment via API
+      await doc.addComment("Great point on security!", {author: "user"});
+      ````
+      ````javascript
+      // Resolve comment
+      await comment.resolve();
+      ````
+    </CodeGroup>
+
+  </Tab>
+</Tabs>
+
+<Expandable title="Conflict Resolution" default-open="false">
+
+    Paperguide auto-merges simple changes. For complex overlaps, use the diff view to manually reconcile.
+
+</Expandable>
+
+## Notifications and Alerts
+
+Stay informed on doc activities.
+
+| Notification Type | Trigger | Delivery |
+|-------------------|---------|----------|
+| Edit | Content change | Email/Slack |
+| Comment | New reply | In-app badge |
+| Publish | Version release | Push notification |
+| Invite | New member | All admins |
+
+<Callout kind="tip">
+
+Customize alerts to avoid overload. Focus on high-impact events like publishes.
+
+</Callout>
+
+## Advanced Collaboration
+
+Integrate with external tools for enhanced workflows.
+
+<Steps>
+  <Step title="Webhook Setup" icon="webhook">
+
+    Configure webhooks for events like doc updates to trigger CI/CD pipelines.
+
+    ````json
+    {
+      "event": "doc.updated",
+      "url": "https://ci.example.com/webhook",
+      "secret": "webhook-secret"
+    }
+    ````
+
+  </Step>
+  <Step title="Version Control" icon="git-branch">
+
+    Link to Git for doc-code alignment. Pull requests mirror doc reviews.
+
+  </Step>
+</Steps>
+
+<ExpandableGroup>
+  <Expandable title="Handling Feedback Loops">
+
+    Use suggestion mode for non-editors to propose changes without altering the original.
+
+  </Expandable>
+  <Expandable title="Audit Logs">
+
+    Review who changed what and when for compliance.
+
+    ````javascript
+    const logs = await space.getAuditLogs({from: "2024-01-01"});
+    logs.forEach(log => console.log(`${log.user}: ${log.action}`));
+    ````
+
+  </Expandable>
+</ExpandableGroup>
+
+You build effective collaboration by combining Paperguide's features with team processes. Regular training ensures everyone contributes optimally. This leads to comprehensive, up-to-date documentation.
