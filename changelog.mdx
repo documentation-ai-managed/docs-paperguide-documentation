@@ -1,0 +1,125 @@
+---
+title: Changelog
+description: Track the latest updates and improvements to Paperguide. Review version history, new features, and bug fixes.
+---
+
+## Release History
+
+Stay informed about Paperguide's evolution. You review changes here to understand new capabilities, fixes, and migration steps. Each release includes detailed notes on features, improvements, and fixes.
+
+<Update label="2024-10-15" description="v2.1.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Added real-time collaboration for shared docs, enabling multiple users to edit simultaneously.
+- Introduced version history rollback, allowing you to restore previous document states.
+
+## Improvements
+
+- Enhanced search with fuzzy matching and full-text indexing for faster results.
+
+## Bug Fixes
+
+- Resolved export failures when including embedded images larger than `5MB`.
+- Fixed sidebar collapse issue on mobile devices during navigation.
+
+</Update>
+
+<Update label="2024-09-20" description="v2.0.0" tags={["feature", "breaking"]}>
+
+## Breaking Changes
+
+- Updated authentication to use JWT tokens instead of API keys. Migrate by regenerating tokens in your settings.
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+// Old
+const response = await fetch('/api/docs', {
+  headers: { 'API-Key': 'old-key' }
+});
+
+// New
+const token = 'your-jwt-token';
+const response = await fetch('/api/docs', {
+  headers: { 'Authorization': `Bearer ${token}` }
+});
+```
+```python
+# Old
+response = requests.get('/api/docs', headers={'API-Key': 'old-key'})
+
+# New
+token = 'your-jwt-token'
+response = requests.get('/api/docs', headers={'Authorization': f'Bearer {token}'})
+```
+</CodeGroup>
+
+## New Features
+
+- Built-in analytics dashboard to track document views and engagement.
+
+## Bug Fixes
+
+- Corrected table rendering glitches in preview mode.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.5.0" tags={["improvement", "bugfix"]}>
+
+## Improvements
+
+- Optimized page load times by `40%` through lazy loading of assets.
+- Added customizable themes with your brand color `#3B82F6`.
+
+## Bug Fixes
+
+- Patched cross-site scripting vulnerability in user-generated content.
+- Stabilized drag-and-drop for reordering sections.
+
+</Update>
+
+## Quick Navigation
+
+<Columns cols={3}>
+  <Card title="Latest (v2.1.0)" icon="zap" href="#2024-10-15-v2-1-0">
+    Real-time editing and more.
+  </Card>
+  <Card title="v2.0.0" icon="alert-triangle" href="#2024-09-20-v2-0-0">
+    Major auth updates.
+  </Card>
+  <Card title="v1.5.0" icon="trending-up" href="#2024-08-10-v1-5-0">
+    Performance boosts.
+  </Card>
+</Columns>
+
+## Stay Updated
+
+<Callout kind="tip">
+Subscribe to the RSS feed or enable email notifications in your account settings to receive changelog alerts instantly.
+</Callout>
+
+Follow these steps to update Paperguide safely:
+
+<Steps>
+  <Step title="Backup" icon="database">
+    Export all your docs to avoid data loss.
+  </Step>
+  <Step title="Update" icon="download">
+    Run `npm update paperguide` or use the admin panel.
+  </Step>
+  <Step title="Verify" icon="check-circle">
+    Test key features like search and exports.
+  </Step>
+</Steps>
+
+## Upcoming Changes
+
+<Expandable title="Sneak Peek: v2.2.0 (ETA November 2024)" default-open="false">
+
+You can expect AI-powered content suggestions and advanced permission controls. Prepare by reviewing your current workflows.
+
+<Callout kind="info">
+Breaking changes may include updated config schemas. Check the migration guide soon.
+</Callout>
+
+</Expandable>

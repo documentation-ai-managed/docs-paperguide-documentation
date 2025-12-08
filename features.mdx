@@ -1,0 +1,105 @@
+---
+title: Key Features
+description: Explore the core capabilities of Paperguide that help you build and maintain comprehensive documentation. Understand how each feature supports your workflow.
+---
+
+## Overview
+
+Paperguide empowers you to create structured, scalable documentation spaces. You organize content hierarchically, collaborate seamlessly with teams, track changes with version control, and find information quickly through advanced search. These features streamline your workflow from initial setup to ongoing maintenance.
+
+<Columns cols={2}>
+  <Card title="Document Organization" icon="layers" href="/docs/organization">
+    Build nested pages and spaces for clear structure.
+  </Card>
+  <Card title="Collaboration Tools" icon="users" href="/docs/collaboration">
+    Share edits and feedback in real-time.
+  </Card>
+  <Card title="Version Control" icon="git-branch" href="/docs/version-control">
+    Track changes and revert with confidence.
+  </Card>
+  <Card title="Search and Navigation" icon="search" href="/docs/search">
+    Locate content instantly across your docs.
+  </Card>
+</Columns>
+
+## Document Organization
+
+You structure your documentation using nested pages and custom spaces. Create hierarchies like `/guides/quickstart` or `/api/reference/endpoints` to match your project needs.
+
+<Steps>
+  <Step title="Create a Space" icon="folder">
+    Navigate to the dashboard and select **New Space**. Name it `Project Docs` and set permissions.
+  </Step>
+  <Step title="Add Nested Pages" icon="file-text">
+    Inside the space, create pages like **Introduction** > **Installation** > **npm**. Drag to reorder.
+  </Step>
+  <Step title="Customize Navigation" icon="menu">
+    Enable sidebar menus and table of contents for intuitive browsing.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Use spaces for multi-project docs. Limit nesting to three levels for optimal readability.
+</Callout>
+
+## Collaboration Tools
+
+Invite team members to co-edit pages. You comment inline, assign tasks, and resolve feedback directly.
+
+<Tabs>
+  <Tab title="Invite Collaborators" icon="user-plus">
+    In page settings, add emails or teams. Set roles: **Editor**, **Viewer**, or **Admin**.
+  </Tab>
+  <Tab title="Inline Comments" icon="message-circle">
+    Highlight text and add `@mentions`. Resolve threads once addressed.
+  </Tab>
+  <Tab title="Real-time Edits" icon="edit-3">
+    Multiple users edit simultaneously with live cursors and conflict resolution.
+  </Tab>
+</Tabs>
+
+## Version Control
+
+Every change creates a commit. You view diffs, compare versions, and restore previous states.
+
+<CodeGroup tabs="CLI,UI">
+  ```bash
+  # Pull latest changes
+  paperguide pull --space my-docs
+
+  # Create a new version
+  paperguide commit -m "Add API endpoints"
+  ```
+  ```javascript
+  // Programmatic version check
+  const client = new PaperguideClient({ apiKey: process.env.API_KEY });
+  const versions = await client.getVersions('my-docs');
+  console.log(versions[0].diff);
+  ```
+</CodeGroup>
+
+<Expandable title="Advanced Version Workflow" default-open="false">
+  Branch pages for experiments: `main` vs `feature-branch`. Merge via pull requests with approval workflows.
+
+  | Action          | Command/Step                  |
+  |-----------------|-------------------------------|
+  | View History    | Page menu > **Versions**      |
+  | Restore Version | Select > **Restore**          |
+  | Diff Two Versions | Compare dropdown             |
+</Expandable>
+
+## Search and Navigation
+
+Full-text search indexes all content. You filter by space, tag, or type, with fuzzy matching for quick results.
+
+<Image
+  src="https://via.placeholder.com/800x400/3B82F6/white?text=Search+Results"
+  alt="Paperguide search interface showing results for 'authentication'"
+  width="800"
+  height="400"
+  style="margin: 0 auto;"
+/>
+
+Enable breadcrumbs and global search bar. Tag pages like `#api` or `#guide` for refined queries.
+
+These features integrate seamlessly, letting you scale from solo projects to enterprise docs. Start organizing your first space today.

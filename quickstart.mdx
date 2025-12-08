@@ -1,0 +1,119 @@
+---
+title: Quickstart Guide
+description: Set up your first documentation space in Paperguide and start creating content right away. This guide walks you through the initial steps for new users.
+---
+
+## Get Started in Minutes
+
+Paperguide lets you create organized documentation spaces for your projects. Follow these steps to set up your account, create a space, add your first page, and navigate the interface. You complete the setup in under five minutes.
+
+<Callout kind="tip">
+  Use your GitHub account for seamless sign-up and sync your repos directly.
+</Callout>
+
+## Step-by-Step Setup
+
+Use these sequential steps to launch your first documentation space.
+
+<Steps>
+  <Step title="Create Account" icon="user-plus">
+    Visit [paperguide.com](https://paperguide.com) and click **Sign Up**.
+
+    Choose one of these options:
+
+    <Tabs>
+      <Tab title="Email" icon="mail">
+        Enter your email and create a password. Verify via the confirmation link sent to your inbox.
+      </Tab>
+      <Tab title="GitHub" icon="github">
+        Authorize Paperguide to access your GitHub account. This enables repo imports.
+      </Tab>
+      <Tab title="Google" icon="google">
+        Sign in with your Google account for quick access.
+      </Tab>
+    </Tabs>
+  </Step>
+
+  <Step title="Create Documentation Space" icon="book-open">
+    From the dashboard, click **New Space**.
+
+    Fill in the details:
+
+    | Field       | Example Value              | Description                          |
+    |-------------|----------------------------|--------------------------------------|
+    | Name        | My Project Docs            | Display name for your space          |
+    | Slug        | my-project-docs            | URL-friendly identifier              |
+    | Description | Organized docs for API     | Brief overview                       |
+
+    Click **Create** to generate your space.
+  </Step>
+
+  <Step title="Add Your First Page" icon="plus">
+    In your new space, select **New Page** from the sidebar.
+
+    Choose **Markdown** and enter a title like "Introduction".
+
+    Paste this starter content:
+
+    <CodeGroup tabs="MDX,Markdown">
+    ```mdx
+    ---
+    title: Introduction
+    description: Welcome to the project docs
+    ---
+
+    ## Overview
+
+    This space contains all project documentation.
+    ```
+    ```markdown
+    # Introduction
+
+    ## Overview
+
+    This space contains all project documentation.
+    ```
+    </CodeGroup>
+
+    Preview and click **Publish**.
+  </Step>
+
+  <Step title="Navigate Your Space" icon="navigation">
+    Explore these key areas:
+
+    <Columns cols={2}>
+      <Card title="Sidebar" icon="menu" href="/docs/navigation">
+        Access pages, settings, and search.
+      </Card>
+      <Card title="Editor" icon="edit-3" href="/docs/editor">
+        Write in real-time with live preview.
+      </Card>
+      <Card title="Publish" icon="globe" href="/docs/publishing">
+        Deploy changes with one click.
+      </Card>
+      <Card title="Settings" icon="settings" href="/docs/settings">
+        Customize themes and integrations.
+      </Card>
+    </Columns>
+  </Step>
+</Steps>
+
+## Next Steps
+
+<Expandable title="Advanced Features" default-open="false">
+  Integrate with GitHub for version control:
+
+  ```bash
+  # From your space settings, connect repo
+  git remote add paperguide https://github.com/user/my-project-docs.git
+  git push paperguide main
+  ```
+
+  Sync changes automatically on push.
+</Expandable>
+
+You now have a fully functional documentation space. Add more pages, embed components, and collaborate with your team.
+
+<Callout kind="success">
+  Ready for more? Check the [full features](/docs/features) page next.
+</Callout>

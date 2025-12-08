@@ -1,0 +1,177 @@
+---
+title: Integrations and Extensions
+description: Connect Paperguide with third-party tools to enhance your documentation process. Discover supported integrations and how to set them up.
+---
+
+## Overview
+
+Paperguide integrates seamlessly with popular tools to streamline your documentation workflow. You can sync content from GitHub repositories, send notifications to Slack channels, automate tasks with Zapier, and more. Use the built-in integration dashboard to manage connections securely.
+
+## Popular Integrations
+
+Explore key integrations that extend Paperguide's capabilities.
+
+<Columns cols={3}>
+  <Card title="GitHub" icon="github" href="/docs/integrations/github">
+    Sync repositories directly into your documentation space. Auto-update docs on commits.
+  </Card>
+  <Card title="Slack" icon="message-circle" href="/docs/integrations/slack">
+    Receive real-time notifications for doc updates and approvals.
+  </Card>
+  <Card title="Zapier" icon="zap" href="/docs/integrations/zapier">
+    Build no-code automations connecting Paperguide to 5000+ apps.
+  </Card>
+</Columns>
+
+<Callout kind="tip">
+  Start with GitHub for version-controlled docs. All integrations use OAuth for secure access.
+</Callout>
+
+## Setting Up an Integration
+
+Follow these steps to connect any supported integration.
+
+<Steps>
+  <Step title="Navigate to Integrations" icon="settings">
+    Open your Paperguide dashboard and select **Integrations** from the sidebar.
+  </Step>
+  <Step title="Choose Provider" icon="arrow-right">
+    Click the provider card (e.g., GitHub) and authorize the connection.
+  </Step>
+  <Step title="Configure Settings" icon="sliders">
+    Set sync frequency, webhooks, or event triggers as needed.
+  </Step>
+  <Step title="Test Connection" icon="check-circle">
+    Run a test sync to verify data flows correctly.
+  </Step>
+</Steps>
+
+## API Access for Advanced Integrations
+
+Access Paperguide's API to build custom integrations. Generate an `{API_KEY}` from your account settings.
+
+<CodeGroup tabs="JavaScript,Python,cURL">
+  ```javascript
+  const response = await fetch('https://api.paperguide.com/v1/integrations', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      provider: 'github',
+      repo: 'your-org/docs'
+    })
+  });
+  const data = await response.json();
+  console.log(data);
+  ```
+  ```python
+  import requests
+
+  headers = {
+      'Authorization': f'Bearer {API_KEY}',
+      'Content-Type': 'application/json'
+  }
+  data = {
+      'provider': 'github',
+      'repo': 'your-org/docs'
+  }
+  response = requests.post('https://api.paperguide.com/v1/integrations', json=data, headers=headers)
+  print(response.json())
+  ```
+  ```bash
+  curl -X POST https://api.paperguide.com/v1/integrations \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "provider": "github",
+      "repo": "your-org/docs"
+    }'
+  ```
+</CodeGroup>
+
+<Request tabs="JavaScript,Python" show-lines="true">
+  ```javascript
+  // List active integrations
+  const integrations = await fetch('https://api.paperguide.com/v1/integrations', {
+    headers: { 'Authorization': `Bearer ${API_KEY}` }
+  }).then(res => res.json());
+  ```
+  ```python
+  # List active integrations
+  response = requests.get('https://api.paperguide.com/v1/integrations', headers=headers)
+  ```
+</Request>
+
+<Response tabs="200">
+```json
+{
+  "integrations": [
+    {
+      "id": "int_123abc",
+      "provider": "github",
+      "status": "active",
+      "synced_at": "2024-10-15T10:30:00Z"
+    }
+  ]
+}
+```
+</Response>
+
+<ParamField path="provider" param-type="string" required="true">
+  Integration provider name (e.g., `github`, `slack`).
+</ParamField>
+
+<ParamField query="repo" param-type="string" required="false">
+  Repository name for GitHub sync.
+</ParamField>
+
+## Custom Extensions
+
+Build tailored extensions using webhooks and our SDK.
+
+<Tabs>
+  <Tab title="Webhook Setup" icon="webhook">
+    Configure webhooks in your integration dashboard to trigger on doc publishes.
+
+    ```javascript
+    // Handle incoming webhook
+    app.post('/paperguide-webhook', (req, res) => {
+      const { event, doc_id } = req.body;
+      if (event === 'doc_published') {
+        // Notify team
+        sendSlackNotification(doc_id);
+      }
+      res.status(200).send('OK');
+    });
+    ```
+  </Tab>
+  <Tab title="SDK Usage" icon="package">
+    Install the Paperguide SDK for deeper integration.
+
+    <CodeGroup tabs="npm,yarn">
+      ```bash
+      npm install @paperguide/sdk
+      ```
+      ```bash
+      yarn add @paperguide/sdk
+      ```
+    </CodeGroup>
+
+    ```javascript
+    import { PaperguideSDK } from '@paperguide/sdk';
+
+    const sdk = new PaperguideSDK({ apiKey: API_KEY });
+    const docs = await sdk.docs.list({ spaceId: 'space_123' });
+    ```
+  </Tab>
+</Tabs>
+
+<Expandable title="Advanced Webhook Security" default-open="false">
+  Validate payloads using HMAC signatures. Compute `sha256(signature + timestamp)` and compare against the `X-Paperguide-Signature` header.
+</Expandable>
+
+<Callout kind="alert">
+  Store `{API_KEY}` securely—never commit to version control. Use environment variables.
+</Callout>
